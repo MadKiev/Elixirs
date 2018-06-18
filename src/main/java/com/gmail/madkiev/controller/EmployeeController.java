@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/api/v1")
 public class EmployeeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
@@ -21,7 +22,7 @@ public class EmployeeController {
 	//Map to store employees, ideally we should use database
 	Map<Integer, Elixir> elixirData = new HashMap<Integer, Elixir>();
 	
-	@RequestMapping(value = ElixirRestURIConstants.TEST_ELIXIR, method = RequestMethod.GET)
+	@RequestMapping(value = "/elixir", method = RequestMethod.GET)
 	public @ResponseBody Elixir getTestElixir() {
 		logger.info("Start getTestElixir");
 		Elixir elixir = new Elixir();
@@ -32,7 +33,7 @@ public class EmployeeController {
 		return elixir;
 	}
 	
-	@RequestMapping(value = ElixirRestURIConstants.GET_ELIXIR, method = RequestMethod.GET)
+	@RequestMapping(value = "/elixir/{id}", method = RequestMethod.GET)
 	public @ResponseBody Elixir getElixir(@PathVariable("id") int elixirId) {
 		logger.info("Start getEmployee. ID="+elixirId);
 		
@@ -50,7 +51,7 @@ public class EmployeeController {
 		return elixirs;
 	}
 	
-	@RequestMapping(value = ElixirRestURIConstants.CREATE_ELIXIR, method = RequestMethod.POST)
+	@RequestMapping(value = "/elixir", method = RequestMethod.POST)
 	public @ResponseBody Elixir createElixir(@RequestBody Elixir elixir) {
 		logger.info("Start createElixir.");
 		elixir.setCreatedDate(new Date());
@@ -58,7 +59,7 @@ public class EmployeeController {
 		return elixir;
 	}
 	
-	@RequestMapping(value = ElixirRestURIConstants.DELETE_ELIXIR, method = RequestMethod.PUT)
+	@RequestMapping(value = "/elixir/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody Elixir deleteElixir(@PathVariable("id") int elixirId) {
 		logger.info("Start deleteElixir.");
 		Elixir elixir = elixirData.get(elixirId);
@@ -66,44 +67,44 @@ public class EmployeeController {
 		return elixir;
 	}
 
-	@RequestMapping(value = ElixirRestURIConstants.INPUT_ELIXIR, method = RequestMethod.POST)
-	public @ResponseBody Elixir inputValueElixir(@RequestBody Elixir elixir) {
-		logger.info("Start inputValueElixir.");
-		elixir.getDrops();
-		elixir.getCurrentVolume();
-		elixir.getAromaVolume();
-		elixir.getNecessaryVolumeOfBottle();
-		elixirData.put(elixir.getId(), elixir);
-		return elixir;
-	}
-
-	@RequestMapping(value = ElixirRestURIConstants.PROCESS_ELIXIR, method = RequestMethod.POST)
-	public @ResponseBody double processElixir(@RequestBody Elixir elixir) {
-		logger.info("Start processElixir.");
-		elixir.getDrops();
-		elixir.getVolumeInMl();
-		elixirData.put(elixir.getId(), elixir);
-		return elixir.getAromaVolume() / elixir.getCurrentVolume();
-
-	}
-
-
-	@RequestMapping(value = ElixirRestURIConstants.OUTPUT_IN_ML_ELIXIR, method = RequestMethod.POST)
-	public @ResponseBody double outPutValueElixirInMl(@RequestBody Elixir elixir) {
-		logger.info("Start outPutValueElixirInMl.");
-		elixir.getVolumeInMl();
-		elixir.getNecessaryVolumeOfBottle();
-		elixirData.put(elixir.getId(), elixir);
-		return elixir.getNecessaryAroma(); // in ml
-	}
-
-	@RequestMapping(value = ElixirRestURIConstants.OUTPUT_IN_DROPS_ELIXIR, method = RequestMethod.POST)
-	public @ResponseBody double outPutValueElixirInDrops(@RequestBody Elixir elixir){
-		logger.info("start outPutValueElixirInDrops");
-		elixir.getNecessaryAroma();
-		elixir.getDrops();
-		elixirData.put(elixir.getId(), elixir);
-		return elixir.getDropsOfAroma(); // in drops
-	}
+//	@RequestMapping(value = ElixirRestURIConstants.INPUT_ELIXIR, method = RequestMethod.POST)
+//	public @ResponseBody Elixir inputValueElixir(@RequestBody Elixir elixir) {
+//		logger.info("Start inputValueElixir.");
+//		elixir.getDrops();
+//		elixir.getCurrentVolume();
+//		elixir.getAromaVolume();
+//		elixir.getNecessaryVolumeOfBottle();
+//		elixirData.put(elixir.getId(), elixir);
+//		return elixir;
+//	}
+//
+//	@RequestMapping(value = ElixirRestURIConstants.PROCESS_ELIXIR, method = RequestMethod.POST)
+//	public @ResponseBody double processElixir(@RequestBody Elixir elixir) {
+//		logger.info("Start processElixir.");
+//		elixir.getDrops();
+//		elixir.getVolumeInMl();
+//		elixirData.put(elixir.getId(), elixir);
+//		return elixir.getAromaVolume() / elixir.getCurrentVolume();
+//
+//	}
+//
+//
+//	@RequestMapping(value = ElixirRestURIConstants.OUTPUT_IN_ML_ELIXIR, method = RequestMethod.POST)
+//	public @ResponseBody double outPutValueElixirInMl(@RequestBody Elixir elixir) {
+//		logger.info("Start outPutValueElixirInMl.");
+//		elixir.getVolumeInMl();
+//		elixir.getNecessaryVolumeOfBottle();
+//		elixirData.put(elixir.getId(), elixir);
+//		return elixir.getNecessaryAroma(); // in ml
+//	}
+//
+//	@RequestMapping(value = ElixirRestURIConstants.OUTPUT_IN_DROPS_ELIXIR, method = RequestMethod.POST)
+//	public @ResponseBody double outPutValueElixirInDrops(@RequestBody Elixir elixir){
+//		logger.info("start outPutValueElixirInDrops");
+//		elixir.getNecessaryAroma();
+//		elixir.getDrops();
+//		elixirData.put(elixir.getId(), elixir);
+//		return elixir.getDropsOfAroma(); // in drops
+//	}
 
 }
