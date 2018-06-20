@@ -9,6 +9,9 @@ import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 public class Elixir implements Serializable{
 
 	private static final long serialVersionUID = -7788619177798333712L;
+	private int id;
+	private String name;
+	private Date createdDate;
 	//input
 	private double currentVolume;
 	private double aromaVolume;
@@ -20,12 +23,24 @@ public class Elixir implements Serializable{
 	private double necessaryAroma = volumeInMl * necessaryVolumeOfBottle;
 	private double dropsOfAroma = necessaryAroma * drops ;
 
-	private int id;
-	private String name;
-	private Date createdDate;
-
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getCurrentVolume() {
@@ -56,8 +71,8 @@ public class Elixir implements Serializable{
 		return volumeInMl;
 	}
 
-	public void setVolumeInMl(double volumeOnMl) {
-		this.volumeInMl = volumeOnMl;
+	public void setVolumeInMl(double volumeInMl) {
+		this.volumeInMl = volumeInMl;
 	}
 
 	public int getDrops() {
@@ -82,22 +97,6 @@ public class Elixir implements Serializable{
 
 	public void setDropsOfAroma(double dropsOfAroma) {
 		this.dropsOfAroma = dropsOfAroma;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	@JsonSerialize(using=DateSerializer.class)
