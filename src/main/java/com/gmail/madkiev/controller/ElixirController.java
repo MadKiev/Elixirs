@@ -20,7 +20,7 @@ public class ElixirController {
 	private static final Logger logger = LoggerFactory.getLogger(ElixirController.class);
 	
 	//Map to store elixirs
-	Map<Integer, Elixir> elixirData = new HashMap<Integer, Elixir>();
+	Map<Integer, Elixir> elixirData = new HashMap<>();
 	
 	@RequestMapping(value = "/elixir", method = RequestMethod.GET)
 	public @ResponseBody Elixir getTestElixir() {
@@ -37,7 +37,7 @@ public class ElixirController {
 	
 	@RequestMapping(value = "/elixir/{id}", method = RequestMethod.GET)
 	public @ResponseBody Elixir getElixir(@PathVariable("id") int elixirId) {
-		logger.info("Start getEmployee. ID="+elixirId);
+		logger.info("Start getElixir. ID="+elixirId);
 		
 		return elixirData.get(elixirId);
 	}
@@ -68,6 +68,4 @@ public class ElixirController {
 		elixirData.remove(elixirId);
 		return elixir;
 	}
-//////////////////////////////////////////////////////////////////////
-
 }
