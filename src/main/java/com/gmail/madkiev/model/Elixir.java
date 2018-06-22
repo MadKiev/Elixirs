@@ -1,7 +1,7 @@
 package com.gmail.madkiev.model;
 
 public class Elixir{
-	private int id;
+	private String id;
 	private String name;
 	private Recipe recipe;
 
@@ -13,11 +13,11 @@ public class Elixir{
         this.recipe = recipe;
     }
 
-    public int getId() {
+    public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

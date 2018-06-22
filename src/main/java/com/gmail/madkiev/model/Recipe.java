@@ -3,8 +3,8 @@ package com.gmail.madkiev.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Recipe extends Elixir {
-    private int id;
+public class Recipe{
+    private String id;
     private String name;
     private Map<Ingredient, Double> elixirData = new HashMap<>();
 
@@ -16,11 +16,11 @@ public class Recipe extends Elixir {
         this.elixirData = elixirData;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

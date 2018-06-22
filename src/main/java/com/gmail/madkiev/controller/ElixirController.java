@@ -1,14 +1,12 @@
 package com.gmail.madkiev.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.gmail.madkiev.model.Elixir;
+import com.gmail.madkiev.repository.ElixirRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,50 +15,44 @@ import org.springframework.web.bind.annotation.*;
 public class ElixirController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ElixirController.class);
-	
-	//Map to store elixirs
-	Map<Integer, Elixir> elixirData = new HashMap<>();
+
+	@Autowired
+	private ElixirRepository elixirRepository;
+
 	
 	@RequestMapping(value = "/elixir", method = RequestMethod.GET)
 	public @ResponseBody Elixir getTestElixir() {
 		logger.info("Start getTestElixir");
 		Elixir elixir = new Elixir();
-		elixir.setId(1);
+		elixir.setId(UUID.randomUUID().toString());
 		elixir.setName("Elixir of health");
-		elixirData.put(1, elixir);
+		elixirRepository.saveElixir(elixir);
 		return elixir;
 	}
 	
 	@RequestMapping(value = "/elixir/{id}", method = RequestMethod.GET)
-	public @ResponseBody Elixir getElixir(@PathVariable("id") int elixirId) {
+	public @ResponseBody Elixir getElixir(@PathVariable("id") String elixirId) {
 		logger.info("Start getElixir. ID="+elixirId);
 		
-		return elixirData.get(elixirId);
+		return elixirRepository.getElixir(elixirId);
 	}
 	
 	@RequestMapping(value = "/elixirs", method = RequestMethod.GET)
 	public @ResponseBody List<Elixir> getAllElixirs() {
 		logger.info("Start getAllElixirs.");
-		List<Elixir> elixirs = new ArrayList<Elixir>();
-		Set<Integer> ElixirIdKeys = elixirData.keySet();
-		for(Integer i : ElixirIdKeys){
-			elixirs.add(elixirData.get(i));
-		}
-		return elixirs;
+		return elixirRepository.getElixir();
 	}
 	
 	@RequestMapping(value = "/elixir", method = RequestMethod.POST)
 	public @ResponseBody Elixir createElixir(@RequestBody Elixir elixir) {
 		logger.info("Start createElixir.");
-		elixirData.put(elixir.getId(), elixir);
-		return elixir;
+		return elixirRepository.saveElixir(elixir);
 	}
 	
 	@RequestMapping(value = "/elixir/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody Elixir deleteElixir(@PathVariable("id") int elixirId) {
+	public @ResponseBody
+	void deleteElixir(@PathVariable("id") String elixirId) {
 		logger.info("Start deleteElixir.");
-		Elixir elixir = elixirData.get(elixirId);
-		elixirData.remove(elixirId);
-		return elixir;
+		elixirRepository.deleteElixir(elixirId);
 	}
 }

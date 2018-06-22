@@ -1,7 +1,6 @@
 package com.gmail.madkiev;
 
-import com.gmail.madkiev.repository.InMemoryIngredientRepository;
-import com.gmail.madkiev.repository.IngredientRepository;
+import com.gmail.madkiev.repository.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +16,16 @@ public class Application {
     @Bean
     public IngredientRepository ingredientRepository(){
         return new InMemoryIngredientRepository();
+    }
+
+    @Bean
+    public ElixirRepository elixirRepository(){
+        return new InMemoryElixirRepository();
+    }
+
+    @Bean
+    public RecipeRepository recipeRepository(){
+        return new InMemoryRecipeRepository();
     }
 
 }
