@@ -19,31 +19,31 @@ public class ConverterController {
 
     private static final Logger logger = LoggerFactory.getLogger(ElixirController.class);
 
-    Map<Integer, Elixir> elixirData = new HashMap<Integer, Elixir>();
-
-    @RequestMapping(value = "/elixir/input", method = RequestMethod.PUT) public @ResponseBody
-    Elixir inputValueElixir(@RequestBody Elixir elixir) {
-        logger.info("Start inputValueElixir.");
-        elixirData.put(elixir.getId(), elixir);
-        return elixir;
-    }
-
-
-    @RequestMapping(value = "/elixir/process", method = RequestMethod.POST)
-    public @ResponseBody
-    Elixir processElixir(@RequestBody Elixir elixir) {
-        logger.info("Start processElixir.");
-        elixirData.put(elixir.getId(), elixir);
-        return elixir;
-
-    }
-
-
-    @RequestMapping(value = "/elixir/outputMl", method = RequestMethod.PUT)
-    public @ResponseBody
-    Elixir outPutValueElixir(@RequestBody Elixir elixir) {
-        logger.info("Start outPutValueElixirInMl.");
-        elixirData.put(elixir.getId(), elixir);
-        return elixir;
-    }
+//    Map<Integer, Elixir> elixirData = new HashMap<Integer, Elixir>();
+//
+//    @RequestMapping(value = "/elixir/input", method = RequestMethod.PUT) public @ResponseBody
+//    Elixir inputValueElixir(@RequestBody Elixir elixir) {
+//        logger.info("Start inputValueElixir.");
+//        elixirData.put(elixir.getId(), elixir);
+//        return elixir;
+//    }
+//
+//
+//    @RequestMapping(value = "/elixir/process", method = RequestMethod.POST)
+//    public @ResponseBody
+//    Elixir processElixir(@RequestBody Elixir elixir) {
+//        logger.info("Start processElixir.");
+//        elixirData.put(elixir.getId(), elixir);
+//        return elixir;
+//
+//    }
+//
+//
+//    @RequestMapping(value = "/elixir/outputMl", method = RequestMethod.PUT)
+//    public @ResponseBody
+//    Elixir outPutValueElixir(@RequestBody Elixir elixir) {
+//        logger.info("Start outPutValueElixirInMl.");
+//        elixirData.put(elixir.getId(), elixir);
+//        return elixir;
+//    }
 }
