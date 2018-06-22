@@ -1,20 +1,10 @@
 package com.gmail.madkiev.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Recipe{
     private String id;
     private String name;
-    private Map<Ingredient, Double> elixirData = new HashMap<>();
-
-    public Map<Ingredient, Double> getElixirData() {
-        return elixirData;
-    }
-
-    public void setElixirData(Map<Ingredient, Double> elixirData) {
-        this.elixirData = elixirData;
-    }
+    private Ingredient ingredient;
+    private double quantity;
 
     public String getId() {
         return id;
@@ -30,5 +20,21 @@ public class Recipe{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 }

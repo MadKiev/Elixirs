@@ -1,17 +1,11 @@
 package com.gmail.madkiev.model;
 
+import java.util.List;
+
 public class Elixir{
 	private String id;
 	private String name;
-	private Recipe recipe;
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
+	private List<Recipe> recipe;
 
     public String getId() {
 		return id;
@@ -29,4 +23,11 @@ public class Elixir{
 		this.name = name;
 	}
 
+	public List<Recipe> getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(List<Recipe> recipe) {
+		this.recipe = recipe;
+	}
 }
