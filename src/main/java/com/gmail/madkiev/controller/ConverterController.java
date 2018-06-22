@@ -21,49 +21,27 @@ public class ConverterController {
 
     Map<Integer, Elixir> elixirData = new HashMap<Integer, Elixir>();
 
-    @RequestMapping(value = "/elixir/input", method = RequestMethod.PUT)
-    public @ResponseBody
+    @RequestMapping(value = "/elixir/input", method = RequestMethod.PUT) public @ResponseBody
     Elixir inputValueElixir(@RequestBody Elixir elixir) {
         logger.info("Start inputValueElixir.");
-        elixir.getId();
-        elixir.getDrops();
-        elixir.getCurrentVolume();
-        elixir.getAromaVolume();
-        elixir.getNecessaryVolumeOfBottle();
         elixirData.put(elixir.getId(), elixir);
         return elixir;
     }
 
+
     @RequestMapping(value = "/elixir/process", method = RequestMethod.POST)
-    public @ResponseBody double processElixir(@RequestBody Elixir elixir) {
+    public @ResponseBody Elixir processElixir(@RequestBody Elixir elixir) {
         logger.info("Start processElixir.");
-        elixir.setDrops(33);
-        elixir.setVolumeInMl(4);
-        elixir.setAromaVolume(2);
-        elixir.setCurrentVolume(10);
-        elixir.getDrops();
-        elixir.getVolumeInMl();
         elixirData.put(elixir.getId(), elixir);
-        return elixir.getAromaVolume() / elixir.getCurrentVolume();
+        return elixir;
 
     }
 
 
     @RequestMapping(value = "/elixir/outputMl", method = RequestMethod.PUT)
-    public @ResponseBody double outPutValueElixirInMl(@RequestBody Elixir elixir) {
+    public @ResponseBody Elixir outPutValueElixir(@RequestBody Elixir elixir) {
         logger.info("Start outPutValueElixirInMl.");
-        elixir.getVolumeInMl();
-        elixir.getNecessaryVolumeOfBottle();
         elixirData.put(elixir.getId(), elixir);
-        return elixir.getNecessaryAroma(); // in ml
-    }
-
-    @RequestMapping(value = "/elixir/outputDrops", method = RequestMethod.PUT)
-    public @ResponseBody double outPutValueElixirInDrops(@RequestBody Elixir elixir){
-        logger.info("start outPutValueElixirInDrops");
-        elixir.getNecessaryAroma();
-        elixir.getDrops();
-        elixirData.put(elixir.getId(), elixir);
-        return elixir.getDropsOfAroma(); // in drops
+        return elixir;
     }
 }

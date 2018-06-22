@@ -3,9 +3,6 @@ package com.gmail.madkiev.dataBase;
 import java.sql.*;
 public class Jdbc {
 
-    /**
-     * Connect to a sample database
-     */
     public static void connect() {
         Connection conn = null;
         try {

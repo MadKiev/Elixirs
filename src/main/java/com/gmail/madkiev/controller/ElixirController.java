@@ -1,7 +1,6 @@
 package com.gmail.madkiev.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +26,7 @@ public class ElixirController {
 		logger.info("Start getTestElixir");
 		Elixir elixir = new Elixir();
 		elixir.setId(1);
-		elixir.setCurrentVolume(30);
-		elixir.setAromaVolume(3);
 		elixir.setName("Elixir of health");
-		elixir.setCreatedDate(new Date());
 		elixirData.put(1, elixir);
 		return elixir;
 	}
@@ -56,7 +52,6 @@ public class ElixirController {
 	@RequestMapping(value = "/elixir", method = RequestMethod.POST)
 	public @ResponseBody Elixir createElixir(@RequestBody Elixir elixir) {
 		logger.info("Start createElixir.");
-		elixir.setCreatedDate(new Date());
 		elixirData.put(elixir.getId(), elixir);
 		return elixir;
 	}
