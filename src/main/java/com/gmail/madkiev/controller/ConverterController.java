@@ -30,7 +30,8 @@ public class ConverterController {
 
 
     @RequestMapping(value = "/elixir/process", method = RequestMethod.POST)
-    public @ResponseBody Elixir processElixir(@RequestBody Elixir elixir) {
+    public @ResponseBody
+    Elixir processElixir(@RequestBody Elixir elixir) {
         logger.info("Start processElixir.");
         elixirData.put(elixir.getId(), elixir);
         return elixir;
@@ -39,7 +40,8 @@ public class ConverterController {
 
 
     @RequestMapping(value = "/elixir/outputMl", method = RequestMethod.PUT)
-    public @ResponseBody Elixir outPutValueElixir(@RequestBody Elixir elixir) {
+    public @ResponseBody
+    Elixir outPutValueElixir(@RequestBody Elixir elixir) {
         logger.info("Start outPutValueElixirInMl.");
         elixirData.put(elixir.getId(), elixir);
         return elixir;

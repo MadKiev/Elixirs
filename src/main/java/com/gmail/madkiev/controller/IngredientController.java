@@ -1,66 +1,65 @@
 package com.gmail.madkiev.controller;
 
-import com.gmail.madkiev.model.Elixir;
 import com.gmail.madkiev.model.Ingredient;
+import com.gmail.madkiev.repository.IngredientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/api/v1")
 public class IngredientController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ElixirController.class);
+    private static final Logger logger = LoggerFactory.getLogger(IngredientController.class);
 
-    //Map to store Ingredients
-    Map<Integer, Ingredient> ingredientData = new HashMap<>();
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @RequestMapping(value = "/ingredient", method = RequestMethod.GET)
     public @ResponseBody
     Ingredient getTestIngredient() {
         logger.info("Start getTestIngredient");
         Ingredient ingredient = new Ingredient();
-        ingredient.setId(1);
+        ingredient.setId(UUID.randomUUID().toString());
         ingredient.setName("Secret ingredient");
-        ingredientData.put(1, ingredient);
+        ingredientRepository.saveIngredient(ingredient);
         return ingredient;
     }
 
-    @RequestMapping(value = "/ingredient/{id}", method = RequestMethod.GET)
-    public @ResponseBody Ingredient getIngredient(@PathVariable("id") int ingredientId) {
+    @RequestMapping(value = "/ingredients/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    Ingredient getIngredient(@PathVariable("id") String ingredientId) {
         logger.info("Start getIngredient. ID="+ingredientId);
 
-        return ingredientData.get(ingredientId);
+        return ingredientRepository.getIngredient(ingredientId);
     }
 
     @RequestMapping(value = "/ingredients", method = RequestMethod.GET)
     public @ResponseBody
     List<Ingredient> getAllIngredientId() {
         logger.info("Start getAllIngredients.");
-        List<Ingredient> ingredients = new ArrayList<>();
-        Set<Integer> IngredientsIdKeys = ingredientData.keySet();
-        for(Integer i : IngredientsIdKeys){
-            ingredients.add(ingredientData.get(i));
-        }
-        return ingredients;
+        return ingredientRepository.getIngredients();
     }
 
-    @RequestMapping(value = "/ingredient", method = RequestMethod.POST)
-    public @ResponseBody Ingredient createIngredient(@RequestBody Ingredient ingredient) {
+    @RequestMapping(value = "/ingredients", method = RequestMethod.POST)
+    public @ResponseBody
+    Ingredient createIngredient(@RequestBody Ingredient ingredient) {
         logger.info("Start createIngredient.");
-        ingredientData.put(ingredient.getId(), ingredient);
-        return ingredient;
+        return ingredientRepository.saveIngredient(ingredient);
     }
 
-    @RequestMapping(value = "/ingredient/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody Ingredient deleteIngredient(@PathVariable("id") int ingredientId) {
+    @RequestMapping(value = "/ingredients/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody void deleteIngredient(@PathVariable("id") String ingredientId) {
         logger.info("Start deleteIngredient.");
-        Ingredient ingredient = new Ingredient();
-        ingredientData.get(ingredientId);
-        ingredientData.remove(ingredientId);
-        return ingredient;
+        ingredientRepository.deleteIngredient(ingredientId);
     }
 }
