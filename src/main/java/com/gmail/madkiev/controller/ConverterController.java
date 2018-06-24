@@ -21,12 +21,6 @@ public class ConverterController {
     @Autowired
     private ElixirRepository elixirRepository;
 
-    @Autowired
-    private RecipeRepository recipeRepository;
-
-    @Autowired
-    private IngredientRepository ingredientRepository;
-
     @RequestMapping(value = "/elixir/input{id}", method = RequestMethod.POST) public @ResponseBody
     Elixir inputValueElixir(@PathVariable("id") String elixirId) {
         //передовать айди еликсира и желаемый обьем
