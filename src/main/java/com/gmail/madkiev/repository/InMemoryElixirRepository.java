@@ -30,4 +30,10 @@ public class InMemoryElixirRepository implements ElixirRepository{
     public void deleteElixir(String id) {
         elixirMap.remove(id);
     }
+
+    @Override
+    public Elixir addVolume(String volume) {
+        return elixirMap.get(volume);
+    }
+
 }

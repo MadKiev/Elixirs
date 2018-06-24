@@ -55,4 +55,11 @@ public class ElixirController {
 		logger.info("Start deleteElixir.");
 		elixirRepository.deleteElixir(elixirId);
 	}
+
+	@RequestMapping(value = "/elixir/{id}", method = RequestMethod.PUT)
+	public @ResponseBody Elixir addVolume(@PathVariable("id") String volume){
+		logger.info("Start addVolume");
+		return elixirRepository.addVolume(volume);
+	}
+
 }

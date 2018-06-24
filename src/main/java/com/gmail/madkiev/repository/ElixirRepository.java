@@ -10,4 +10,5 @@ public interface ElixirRepository {
     Elixir getElixir(String id);
     Elixir saveElixir(Elixir elixir);
     void deleteElixir(String id);
+    Elixir addVolume(String volume);
 }
