@@ -30,7 +30,7 @@ public class ElixirController {
 		return elixir;
 	}
 	
-	@RequestMapping(value = "/elixir/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/elixirs/{id}", method = RequestMethod.GET)
 	public @ResponseBody Elixir getElixir(@PathVariable("id") String elixirId) {
 		logger.info("Start getElixir. ID="+elixirId);
 		
@@ -43,13 +43,13 @@ public class ElixirController {
 		return elixirRepository.getElixir();
 	}
 	
-	@RequestMapping(value = "/elixir", method = RequestMethod.POST)
+	@RequestMapping(value = "/elixirs", method = RequestMethod.POST)
 	public @ResponseBody Elixir createElixir(@RequestBody Elixir elixir) {
 		logger.info("Start createElixir.");
 		return elixirRepository.saveElixir(elixir);
 	}
 	
-	@RequestMapping(value = "/elixir/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/elixirs/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	void deleteElixir(@PathVariable("id") String elixirId) {
 		logger.info("Start deleteElixir.");
