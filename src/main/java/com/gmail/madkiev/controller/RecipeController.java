@@ -25,6 +25,7 @@ public class RecipeController {
         Recipe recipe = new Recipe();
         recipe.setId(UUID.randomUUID().toString());
         recipe.setName("Powerful recipe");
+        recipe.setQuantity(2.1);
         recipeRepository.saveRecipe(recipe);
         return recipe;
     }

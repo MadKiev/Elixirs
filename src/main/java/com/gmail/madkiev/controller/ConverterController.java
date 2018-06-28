@@ -4,8 +4,6 @@ package com.gmail.madkiev.controller;
 import com.gmail.madkiev.model.Elixir;
 import com.gmail.madkiev.model.Recipe;
 import com.gmail.madkiev.repository.ElixirRepository;
-import com.gmail.madkiev.repository.IngredientRepository;
-import com.gmail.madkiev.repository.RecipeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,9 @@ public class ConverterController {
     Elixir inputValueElixir(@PathVariable("id") String elixirId) {
         //передовать айди еликсира и желаемый обьем
         logger.info("Start inputValueElixir.");
-        return elixirRepository.addVolume(elixirId);
+        Recipe recipe = new Recipe();
+        recipe.getQuantity();
+        return elixirRepository.getElixir(elixirId);
     }
 
 

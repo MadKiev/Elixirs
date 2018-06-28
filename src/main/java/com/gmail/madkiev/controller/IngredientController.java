@@ -50,7 +50,7 @@ public class IngredientController {
         return ingredientRepository.getIngredients();
     }
 
-    @RequestMapping(value = "/ingredients", method = RequestMethod.POST)
+    @RequestMapping(value = "/ingredient", method = RequestMethod.POST)
     public @ResponseBody
     Ingredient createIngredient(@RequestBody Ingredient ingredient) {
         logger.info("Start createIngredient.");

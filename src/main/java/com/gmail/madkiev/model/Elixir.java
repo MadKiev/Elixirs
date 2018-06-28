@@ -6,15 +6,6 @@ public class Elixir{
 	private String id;
 	private String name;
 	private List<Recipe> recipe;
-	private String volume;
-
-    public String getVolume() {
-        return volume;
-    }
-
-    public void setVolume(String volume) {
-        this.volume = volume;
-    }
 
     public String getId() {
 		return id;

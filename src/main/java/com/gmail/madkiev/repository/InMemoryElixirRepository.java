@@ -31,9 +31,4 @@ public class InMemoryElixirRepository implements ElixirRepository{
         elixirMap.remove(id);
     }
 
-    @Override
-    public Elixir addVolume(String volume) {
-        return elixirMap.get(volume);
-    }
-
 }
